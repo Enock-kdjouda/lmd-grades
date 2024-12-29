@@ -16,4 +16,6 @@ class ElementConstitutif extends Model
     {
         return $this->belongsTo(UniteEnseignement::class, 'ue_id');
     }
+ 
+
 }
