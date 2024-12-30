@@ -28,7 +28,6 @@
                             <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette UE ?');">Supprimer</button>
                         </form>
                     </td>
-
                 </tr>
             @endforeach
         </tbody>
