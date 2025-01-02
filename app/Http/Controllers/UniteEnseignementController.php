@@ -21,9 +21,9 @@ class UniteEnseignementController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'code' => 'required|unique:unites_enseignement',
-            'nom' => 'required',
-            'credits_ects' => 'required|integer',
+            'code' => 'required|string|regex:/^UE\d{2}$/|unique:unites_enseignement,code',
+            'nom' => 'required|string|max:255',
+            'credits_ects' => 'required|integer|min:1|max:30',
             'semestre' => 'required|integer|min:1|max:6',
         ]);
 
@@ -39,9 +39,9 @@ class UniteEnseignementController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'code' => 'required|max:255',
-            'nom' => 'required|max:255',
-            'credits_ects' => 'required|integer|min:1',
+            'code' => 'required|string|regex:/^UE\d{2}$/|unique:unites_enseignement,code',
+            'nom' => 'required|string|max:255',
+            'credits_ects' => 'required|integer|min:1|max:30',
             'semestre' => 'required|integer|min:1|max:6',
         ]);
 

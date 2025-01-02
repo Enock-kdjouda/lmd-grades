@@ -25,7 +25,7 @@ class ElementConstitutifController extends Controller
         $request->validate([
             'code' => 'required|unique:elements_constitutifs',
             'nom' => 'required',
-            'coefficient' => 'required|numeric|min:0',
+            'coefficient' => 'required|integer|min:1|max:5',
             'ue_id' => 'required|exists:unites_enseignement,id',
         ]);
 

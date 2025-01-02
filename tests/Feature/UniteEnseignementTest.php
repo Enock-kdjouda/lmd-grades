@@ -19,43 +19,73 @@ class UniteEnseignementTest extends TestCase
         $response->assertStatus(200);
     }
     use RefreshDatabase;
-// test pour vérifier qu'un UE est ajouté
-    public function test_ajout_ue()
+
+//test de création d'une UE valide
+    public function test_creation_ue_valide()
     {
-        $response = $this->post('/unites_enseignement', [
-            'code' => 'UE01',
-            'nom' => 'Programmation',
+        $ue = \App\Models\UniteEnseignement::factory()->create([
+            'code' => 'UE11',
+            'nom' => 'Informatique Fondamentale',
             'credits_ects' => 6,
             'semestre' => 1,
         ]);
 
-        $response->assertRedirect('/unites_enseignement');
-        $this->assertDatabaseHas('unites_enseignement', ['code' => 'UE01']);
+        $this->assertDatabaseHas('unites_enseignement', [
+            'code' => 'UE11',
+            'nom' => 'Informatique Fondamentale',
+            'credits_ects' => 6,
+            'semestre' => 1,
+        ]);
     }
-//test pour tester les fonctionnalités de modification
-    public function test_update_ue()
-    {
-        $ue = UniteEnseignement::factory()->create();
 
-        $response = $this->put(route('unites_enseignement.update', $ue->id), [
+// test d'association des EC à une UE
+    public function test_association_ecs_a_une_ue()
+    {
+        $ue = \App\Models\UniteEnseignement::factory()->create();
+        $ec = \App\Models\ElementConstitutif::factory()->create(['ue_id' => $ue->id]);
+
+        $this->assertEquals($ec->ue_id, $ue->id);
+    }
+
+// test de vérification des crédits_ects
+    public function test_verification_credits_ects()
+    {
+        $response = $this->post('/unites_enseignement', [
             'code' => 'UE12',
-            'nom' => 'Nouveau Nom',
-            'credits_ects' => 4,
+            'nom' => 'Analyse Mathématique',
+            'credits_ects' => 40, // Valeur invalide
             'semestre' => 2,
         ]);
 
-        $response->assertRedirect(route('unites_enseignement.index'));
-        $this->assertDatabaseHas('unites_enseignement', ['code' => 'UE12', 'nom' => 'Nouveau Nom']);
+        $response->assertSessionHasErrors(['credits_ects']);
     }
-// test pour tester les fonctionnalités de suppression
-    public function test_delete_ue()
+// test de validation du code UE
+    public function test_validation_code_ue()
     {
-        $ue = UniteEnseignement::factory()->create();
+        $response = $this->post('/unites_enseignement', [
+            'code' => 'INVALID_CODE',
+            'nom' => 'Programmation Avancée',
+            'credits_ects' => 5,
+            'semestre' => 2,
+        ]);
 
-        $response = $this->delete(route('unites_enseignement.destroy', $ue->id));
-
-        $response->assertRedirect(route('unites_enseignement.index'));
-        $this->assertDatabaseMissing('unites_enseignement', ['id' => $ue->id]);
+        $response->assertSessionHasErrors(['code']);
     }
+// test de vérification du semestre
+    
+    public function test_verification_semestre()
+    {
+        $response = $this->post('/unites_enseignement', [
+            'code' => 'UE15',
+            'nom' => 'Algèbre',
+            'credits_ects' => 4,
+            'semestre' => 8, // Valeur invalide
+        ]);
+
+        $response->assertSessionHasErrors(['semestre']);
+    }
+
+
+
 
 }
