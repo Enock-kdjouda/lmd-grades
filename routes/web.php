@@ -9,4 +9,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::resource('unites_enseignement', UniteEnseignementController::class);
+
+Route::resource('elements_constitutifs', ElementConstitutifController::class);
 
