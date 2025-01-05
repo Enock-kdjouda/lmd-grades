@@ -8,7 +8,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return redirect()->route('students.index');
 });
+Route::resource('unites_enseignement', UniteEnseignementController::class);
 
+Route::resource('elements_constitutifs', ElementConstitutifController::class);
 Route::resource('students', StudentController::class);
 Route::get('students/{student}/grades/create', [GradeController::class, 'create'])->name('grades.create');
 Route::post('students/{student}/grades', [GradeController::class, 'store'])->name('grades.store');
