@@ -9,10 +9,13 @@
 
         <!-- Champ EC -->
         <div>
-            <label for="elements_constitutifs_id" class="block text-sm font-medium text-gray-700">Élément Constitutif (EC)</label>
-            <select name="elements_constitutifs_id" id="elements_constitutifs_id" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" required>
+            <label for="ec_id" class="block text-sm font-medium text-gray-700">Élément Constitutif (EC)</label>
+            <select name="ec_id" id="ec_id" class="mt-1 block w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" required>
                 <option value="" disabled selected>-- Sélectionnez un EC --</option>
                 <!-- Dynamique : Ajouter les options -->
+                @foreach ($ecs as $ec)
+                    <option value="{{ $ec->id }}">{{ $ec->nom }}</option>
+                @endforeach
             </select>
         </div>
 

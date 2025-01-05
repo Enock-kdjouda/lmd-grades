@@ -4,14 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Grade;
 use App\Models\Student;
+use App\Models\ElementConstitutif;
 use Illuminate\Http\Request;
 
 class GradeController extends Controller
 {
     public function create(Student $student)
-    {
-        return view('grades.create', compact('student'));
-    }
+{
+    $ecs = ElementConstitutif::all();
+    return view('grades.create', compact('student', 'ecs'));
+}
+
 
     public function store(Request $request, Student $student)
     {

@@ -39,19 +39,19 @@
             <h3 class="text-3xl font-bold text-center mb-12">Nos Services</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- UEs -->
-                <a href="{{ url('/ues') }}" class="group bg-blue-100 hover:bg-blue-200 text-blue-700 rounded-lg shadow-lg p-6 text-center">
+                <a href="{{ route('unites_enseignement.index') }}" class="group bg-blue-100 hover:bg-blue-200 text-blue-700 rounded-lg shadow-lg p-6 text-center">
                     <img src="https://i.etsystatic.com/13048814/r/il/0b1ab1/3072162090/il_fullxfull.3072162090_2woe.jpg" alt="UEs" class="mx-auto mb-4">
                     <h4 class="text-xl font-bold mb-2">Unités d'Enseignement</h4>
                     <p class="text-sm">Gérez toutes vos unités d’enseignement avec simplicité.</p>
                 </a>
                 <!-- ECs -->
-                <a href="{{ url('/ecs') }}" class="group bg-green-100 hover:bg-green-200 text-green-700 rounded-lg shadow-lg p-6 text-center">
+                <a href="{{ route('elements_constitutifs.index') }}" class="group bg-green-100 hover:bg-green-200 text-green-700 rounded-lg shadow-lg p-6 text-center">
                     <img src="https://img.elo7.com.br/product/zoom/3ACCEFC/quadro-decorativo-esportes-downhill-com-moldura-rc133-bicicleta.jpg" alt="ECs" class="mx-auto mb-4">
                     <h4 class="text-xl font-bold mb-2">Éléments Constitutifs</h4>
                     <p class="text-sm">Ajoutez et modifiez vos éléments constitutifs facilement.</p>
                 </a>
                 <!-- Étudiants -->
-                <a href="{{ url('/students') }}" class="group bg-yellow-100 hover:bg-yellow-200 text-yellow-700 rounded-lg shadow-lg p-6 text-center">
+                <a href="{{ route('students.index') }}" class="group bg-yellow-100 hover:bg-yellow-200 text-yellow-700 rounded-lg shadow-lg p-6 text-center">
                     <img src="https://img.elo7.com.br/product/zoom/3ACCEFC/quadro-decorativo-esportes-downhill-com-moldura-rc133-bicicleta.jpg" alt="Étudiants" class="mx-auto mb-4">
                     <h4 class="text-xl font-bold mb-2">Étudiants</h4>
                     <p class="text-sm">Gérez les informations et profils des étudiants.</p>

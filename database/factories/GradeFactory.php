@@ -4,24 +4,30 @@ namespace Database\Factories;
 
 use App\Models\Grade; 
 use App\Models\Student;
+use App\Models\ElementConstitutif;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class GradeFactory extends Factory 
 {
-    protected $model = Grade::class; 
-    public function definition()
-    {
-        return [
-            'etudiant_id' => Student::factory(),
-            'elements_constitutifs_id' => $this->faker->numberBetween(1, 10),
-            'note' => $this->faker->randomFloat(2, 0, 20),
-            'session' => $this->faker->randomElement(['normale', 'rattrapage']),
-            'date_evaluation' => $this->faker->date(),
-        ];
-    }
+    
+    
+        protected $model = \App\Models\Grade::class;
+    
+        public function definition()
+        {
+            return [
+                'etudiant_id' => \App\Models\Student::factory(),
+                'ec_id' => \App\Models\ElementConstitutif::factory(),
+                'note' => $this->faker->randomFloat(2, 0, 20),
+                'session' => $this->faker->randomElement(['normale', 'rattrapage']),
+                'date_evaluation' => $this->faker->date(),
+            ];
+        }
+    
+    
 
     /**
-     * Indicate that the grade is for normal session
+     * Indiquer que la note est pour une session normale
      */
     public function normale()
     {
@@ -33,7 +39,7 @@ class GradeFactory extends Factory
     }
 
     /**
-     * Indicate that the grade is for rattrapage session
+     * Indiquer que la note est pour une session de rattrapage
      */
     public function rattrapage()
     {
