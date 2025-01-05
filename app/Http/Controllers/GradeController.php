@@ -13,6 +13,7 @@ class GradeController extends Controller
 {
     $ecs = ElementConstitutif::all();
     return view('grades.create', compact('student', 'ecs'));
+    dd($ecs);
 }
 
 

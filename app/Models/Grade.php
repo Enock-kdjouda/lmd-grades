@@ -29,7 +29,7 @@ class Grade extends Model
         return $this->belongsTo(Student::class, 'etudiant_id');
     }
 
-    public function ec()
+    public function elementConstitutif()
 {
     return $this->belongsTo(ElementConstitutif::class, 'ec_id');
 }
