@@ -10,6 +10,7 @@ class ElementConstitutif extends Model
     use HasFactory;
 
     protected $table = 'elements_constitutifs';
+    
     protected $fillable = ['code', 'nom', 'coefficient', 'ue_id'];
 
     public function uniteEnseignement()

@@ -10,21 +10,15 @@ class Student extends Model
 {
     use HasFactory; 
 
+    protected $table = 'students';
+
     protected $fillable = [
         'numero_etudiant',
         'nom',
         'prenom',
         'niveau'
     ];
-    public function definition()
-    {
-        return [
-            'numero_etudiant' => $this->faker->unique()->numerify('ETU###'),
-            'nom' => $this->faker->lastName(),
-            'prenom' => $this->faker->firstName(),
-            'niveau' => $this->faker->randomElement(['L1', 'L2', 'L3']),
-        ];
-    }
+   
 
     /**
      * Relation entre un étudiant et ses notes.

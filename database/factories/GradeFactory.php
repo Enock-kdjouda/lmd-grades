@@ -49,4 +49,23 @@ class GradeFactory extends Factory
             ];
         });
     }
+
+        public function noteMaximale()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'note' => 20,
+            ];
+        });
+    }
+
+    public function noteMinimale()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'note' => 0,
+            ];
+        });
+    }
+
 }

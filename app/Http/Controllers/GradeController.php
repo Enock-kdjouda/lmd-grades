@@ -20,7 +20,7 @@ class GradeController extends Controller
     public function store(Request $request, Student $student)
     {
         $validated = $request->validate([
-            'ec_id' => 'required|exists:ecs,id',
+            'ec_id' => 'required|exists:elements_constitutifs,id',
             'note' => 'required|numeric|min:0|max:20',
             'session' => 'required|in:normale,rattrapage',
             'date_evaluation' => 'required|date'
